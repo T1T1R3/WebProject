@@ -1,9 +1,14 @@
 import React from "react";
+import CategReg from "../components/CategReg";
 
 const MainPage = () => {
+
+
+
+
     return (
-        <div>
-            <h1>Welcome to the Main Page</h1>
+        <div style={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
+            <CategReg/>
         </div>
     );
 };

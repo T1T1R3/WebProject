@@ -7,9 +7,9 @@ import cors from 'cors';
 const app = express();
 const port = 3000;
 
-app.use(cors());
 
 app.use(express.json());
+app.use(cors());
 
 
 const connection = mysql.createConnection({
@@ -29,6 +29,15 @@ app.get('/show-users', (req, res) =>{
         if (err) throw err;
         res.json(results);
     });
+})
+
+app.post('/add-categ', (req, res) =>{
+    const { nomeCateg, statusCateg } = req.body;
+    const query = "INSERT INTO categoria (categoria, status) VALUES (?, ?)";
+    connection.query(query, [nomeCateg, statusCateg], (err, results) => {
+        if(err) throw err;
+        res.json(results);
+    })
 })
 
 app.post('/login', (req, res) =>{

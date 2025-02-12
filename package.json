@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "project": "concurrently \"npm run dev\" \"node ./src/backend/db_connection.js\""
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -15,6 +16,7 @@
     "@mui/material": "^6.4.3",
     "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
+    "concurrently": "^9.1.2",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
@@ -34,5 +36,6 @@
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
     "vite": "^6.1.0"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
