@@ -31,6 +31,13 @@ app.get('/show-users', (req, res) =>{
     });
 })
 
+app.get('/show-categ', (req, res) =>{
+    connection.query("SELECT * FROM categoria", (err, results) => {
+        if(err) throw err;
+        res.json(results);
+    })
+})
+
 app.post('/add-categ', (req, res) =>{
     const { nomeCateg, statusCateg } = req.body;
     const query = "INSERT INTO categoria (categoria, status) VALUES (?, ?)";

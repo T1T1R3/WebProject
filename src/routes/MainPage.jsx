@@ -1,15 +1,11 @@
 import React from "react";
-import CategReg from "../components/CategReg";
+import { Typography } from "@mui/material";
 
 const MainPage = () => {
-
-
-
-
     return (
-        <div style={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
-            <CategReg/>
-        </div>
+        <>
+            <Typography variant="h6">Pagina inicial</Typography>
+        </>
     );
 };
 

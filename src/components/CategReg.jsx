@@ -43,7 +43,7 @@ const CategReg = () =>{
 
     return(
     <>
-        <Button variant="contained" onClick={handleClickOpen}>Cadastro de categorias</Button>
+        <Button variant="contained" onClick={handleClickOpen}>Acrescentar categoria</Button>
         <Dialog open={open} onClose={handleClose} fullWidth sx={{display:'flex', justifyContent:'center'}}>
             <DialogTitle variant="h5" fontWeight='500' sx={{alignSelf:'center'}}>Cadastro de categoria</DialogTitle>
             <DialogContent sx={{alignSelf:'flex-start', display:'flex', flexDirection:'column', gap:'10px'}}>
@@ -58,7 +58,7 @@ const CategReg = () =>{
                     </Select>
                 </FormControl>
                 <div style={{display:'flex', justifyContent:'center'}}>
-                    <Button onClick={() => handleSubmit(categ) && handleClose} sx={{maxWidth:'100px', marginTop:'10px'}} variant="contained" color="success">Cadastrar</Button>
+                    <Button onClick={() => handleSubmit(categ) && handleClose} sx={{maxWidth:'100px', marginTop:'10px'}} variant="contained" color="primary">Cadastrar</Button>
                 </div>
             </DialogContent>
         </Dialog>
