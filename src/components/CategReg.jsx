@@ -45,19 +45,19 @@ const CategReg = () =>{
     <>
         <Button variant="contained" onClick={handleClickOpen}>Acrescentar categoria</Button>
         <Dialog open={open} onClose={handleClose} fullWidth sx={{display:'flex', justifyContent:'center'}}>
-            <DialogTitle variant="h5" fontWeight='500' sx={{alignSelf:'center'}}>Cadastro de categoria</DialogTitle>
+            <DialogTitle variant="h5" fontWeight='500' sx={{alignSelf:'flex-start'}}>Cadastro de categoria</DialogTitle>
             <DialogContent sx={{alignSelf:'flex-start', display:'flex', flexDirection:'column', gap:'10px'}}>
                 <Typography variant="p" fontWeight='500'>Nome da categoria</Typography>
                     <TextField name="nomeCateg" value={categ.nomeCateg} onChange={handleChange}  sx={{minWidth:'400px'}} label='Insira o nome da categoria' />
                 <Typography variant="p" fontWeight='500'>Status</Typography>        
-                <FormControl sx={{minWidth:'130px'}} variant="filled">
-                    <InputLabel>Selecione um status</InputLabel>
-                    <Select name="statusCateg" value={categ.statusCateg} onChange={handleChange}>
+                <FormControl sx={{minWidth:'130px'}} >
+                    <Select sx={{maxWidth:'100px'}} name="statusCateg" value={categ.statusCateg} onChange={handleChange}>
                         <MenuItem value={"ativo"}>Ativo</MenuItem>
                         <MenuItem value={"inativo"}>Inativo</MenuItem>
                     </Select>
                 </FormControl>
-                <div style={{display:'flex', justifyContent:'center'}}>
+                <div style={{display:'flex', justifyContent:'flex-end', gap:'10px'}}>
+                    <Button onClick={handleClose} sx={{maxWidth:'100px', marginTop:'10px'}} color="primary">Fechar</Button>
                     <Button onClick={() => handleSubmit(categ) && handleClose} sx={{maxWidth:'100px', marginTop:'10px'}} variant="contained" color="primary">Cadastrar</Button>
                 </div>
             </DialogContent>

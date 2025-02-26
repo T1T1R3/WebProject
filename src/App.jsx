@@ -2,12 +2,19 @@ import React from "react";
 import Typography from '@mui/material/Typography';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import { Chip } from "@mui/material";
+import { Chip, Button } from "@mui/material";
 import { AppProvider } from '@toolpad/core/AppProvider';
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import BugReportIcon from '@mui/icons-material/BugReport';
+import { DashboardLayout, ThemeSwitcher } from '@toolpad/core/DashboardLayout';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import DescriptionIcon from '@mui/icons-material/Description';
+import CategoryIcon from '@mui/icons-material/Category';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import { PageContainer } from '@toolpad/core/PageContainer';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useAuth } from "./components/AuthContext";
 
 
 const NavigationMenu = [
@@ -21,10 +28,50 @@ const NavigationMenu = [
         icon: <DashboardIcon/>,
     },
     {
-        segment:'categories',
-        title:'Categorias',
-        icon: <BugReportIcon/>,
+        kind:'divider',
     },
+    {
+        segment:'register',
+        title: 'Cadastro',
+        icon:<AddBoxIcon/>,
+        children:[
+            {
+                segment:'categories',
+                title:'Categorias',
+                icon: <CategoryIcon/>,
+            },
+            {
+                segment:'suppliers',
+                title:'Fornecedores',
+                icon: <AddShoppingCartIcon/>,
+            },
+            {
+                segment:'products',
+                title:'Produtos',
+                icon: <ShoppingBasketIcon/>,
+            },
+            {
+                segment:'requests',
+                title:'Requisições',
+                icon: <ReceiptIcon/>,
+            },
+
+        ]
+    },
+    {
+        segment:'reports',
+        title:'Relatórios',
+        icon:<DescriptionIcon/>,
+        children:[
+
+        ]
+
+    },
+    {
+        segment:'chars',
+        title:'Gráficos',
+        icon:<BarChartIcon/>,
+    }
 
 
 ]
@@ -41,13 +88,38 @@ function AppTitleValue(){
     )
 }
 
+function LogoutButton(){
+    const {logout} = useAuth();
+    const navigate = useNavigate();
+    const handleLogout = () =>{
+        logout();
+        navigate('/');
+    }
+
+    return(
+        <Button onClick={handleLogout}>Sair</Button>
+    )
+}
+
+
+function ToolBarItems(){
+
+    return(
+        <>
+            <LogoutButton/>
+            <ThemeSwitcher/>
+        </>
+    )
+}
+
 const App = () => {
     return (
         <>
             <AppProvider navigation={NavigationMenu}>
                 <DashboardLayout
                 slots={{
-                    appTitle:AppTitleValue
+                    appTitle:AppTitleValue,
+                    toolbarActions:ToolBarItems
                 }}
                 >
                     <PageContainer>

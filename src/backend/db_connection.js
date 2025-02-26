@@ -31,6 +31,20 @@ app.get('/show-users', (req, res) =>{
     });
 })
 
+app.get('/show-categ/:id_categoria', (req, res) =>{
+    const id = req.params.id_categoria;
+    const query = "SELECT * FROM categoria WHERE id_categoria = ?";
+    connection.query(query, [id], async (err, results) =>{
+        if(err){
+            return res.status(500).send('Error in db');
+        }
+        if(results.length === 0){
+            return res.status(430).send('Cannot find id');
+        }
+        res.json(results);
+    })
+})
+
 app.get('/show-categ', (req, res) =>{
     connection.query("SELECT * FROM categoria", (err, results) => {
         if(err) throw err;
@@ -48,7 +62,8 @@ app.post('/add-categ', (req, res) =>{
 })
 
 app.post('/login', (req, res) =>{
-    const { email, passw} = req.body;
+    const {email, passw} = req.body;
+
     if(!email || !passw){
         return res.status(403).send('error no email or pass');
 
@@ -59,10 +74,11 @@ app.post('/login', (req, res) =>{
         if(err){
             return res.status(500).send('Cannot check user');
         }
-        if(results.lenght === 0){
+        if(results.lenght === 0 || results[0] === undefined){
             return res.status(430).send('Invalid email or password');
 
         }
+
         const user = results[0];
 
         const passwordMatch = passw === user.senha;

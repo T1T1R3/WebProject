@@ -41,7 +41,7 @@ export default function CategoriesPage(){
         .catch(error => {
             console.error(error);
         })
-    })
+    }, [])
 
     return(
         <>
@@ -65,7 +65,7 @@ export default function CategoriesPage(){
                                 <TableCell>{category.categoria}</TableCell>
                                 <TableCell align="center" sx={{maxWidth:'200px', minWidth:'200px'}}>{showStatus(isActive(category.status))}</TableCell>
                                 <TableCell align="center">
-                                    <EditCateg id_categ={category.id_categoria}/>
+                                    <EditCateg categ={category}/>
                                     <RemoveCateg id_categ={category.id_categoria}/>
                                 </TableCell>
                             </TableRow>
