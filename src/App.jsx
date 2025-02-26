@@ -101,11 +101,17 @@ function LogoutButton(){
     )
 }
 
+function HelloUser(){
+    const {username} = useAuth();
+    return <Typography fontWeight={500}>Bem-Vindo, {username}! </Typography>
+}
+
 
 function ToolBarItems(){
 
     return(
         <>
+            <HelloUser/>
             <LogoutButton/>
             <ThemeSwitcher/>
         </>
@@ -113,6 +119,8 @@ function ToolBarItems(){
 }
 
 const App = () => {
+    const {username} = useAuth();
+
     return (
         <>
             <AppProvider navigation={NavigationMenu}>

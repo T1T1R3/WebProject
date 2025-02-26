@@ -87,7 +87,7 @@ app.post('/login', (req, res) =>{
         }
 
         const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
-        res.status(200).json({ message: 'Login Successful', token });
+        res.status(200).json({ message: 'Login Successful', token, username:user.nome_usuario});
     })
 })
 

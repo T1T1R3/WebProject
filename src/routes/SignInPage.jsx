@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { SignInPage } from "@toolpad/core";
-import { Container, Alert } from "@mui/material";
+import { Container, Alert, Checkbox, FormControlLabel, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../components/AuthContext';
 
@@ -30,8 +30,9 @@ export default function SignIn() {
   const handleSignIn = async () => {
     try {
       const response = await axios.post('http://localhost:3000/login', { email, passw });
+      const user = response.data;
       setAlert({type:'success', message:'Usuário logado com sucesso!'});
-      login();
+      login(user);
       navigate('/init');
     } catch (errorMessage) {
       console.error('Error: ', errorMessage);
@@ -39,6 +40,46 @@ export default function SignIn() {
     }
   };
 
+  const TitleLogin = ()=>{
+    return <h2 style={{ marginBottom: 8 }}>Entrar</h2>;
+  }
+
+  function RememberMe() {
+    return (
+      <FormControlLabel
+        control={
+          <Checkbox
+            name="tandc"
+            value="true"
+            color="primary"
+            sx={{ padding: 0.5, '& .MuiSvgIcon-root': { fontSize: 20 } }}
+          />
+        }
+        slotProps={{
+          typography: {
+            fontSize: 14,
+          },
+        }}
+        color="textSecondary"
+        label="Lembrar de mim"
+      />
+    );
+  }
+
+  function CustomButton() {
+    return (
+      <Button
+        type="submit"
+        variant="contained"
+        color="info"
+        disableElevation
+        fullWidth
+        sx={{ my: 2 }}
+      >
+        Login
+      </Button>
+    );
+  }
 
   return (
     <Container>
@@ -46,11 +87,14 @@ export default function SignIn() {
         signIn={handleSignIn}
         providers={providers}
         slotProps={{
-          emailField: { onChange: (e) => setEmail(e.target.value), value: email },
-          passwordField: { onChange: (e) => setPassword(e.target.value), value: passw }
+          emailField: {variant:'standard', onChange: (e) => setEmail(e.target.value), value: email },
+          passwordField: {label:'Senha', variant:'standard', onChange: (e) => setPassword(e.target.value), value: passw }
         }}
         slots={{
-            subtitle:alertBox
+            title:TitleLogin,
+            subtitle:alertBox,
+            rememberMe:RememberMe,
+            submitButton:CustomButton,
         }}
       />
     </Container>
