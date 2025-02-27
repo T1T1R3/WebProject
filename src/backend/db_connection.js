@@ -61,6 +61,34 @@ app.post('/add-categ', (req, res) =>{
     })
 })
 
+app.post('/edit-categ', (req, res) =>{
+    const {id_categoria, categoria, status} = req.body;
+    const query = "UPDATE categoria SET categoria = ?, status = ? WHERE id_categoria = ?";
+
+    connection.query(query, [categoria, status, id_categoria], (err, results) =>{
+        if(err) {
+            console.error(err);
+            return res.status(500).json({error: 'Internal Server Error'});
+        }
+        console.log(results);
+        res.json(results);
+    });
+});
+
+app.delete('/remove-categ', (req, res) =>{
+    const {id_categoria} = req.body;
+    const query = "DELETE FROM categoria WHERE id_categoria = ?";
+
+    connection.query(query, [id_categoria], (err, results)=>{
+        if(err){
+            console.error(err);
+            return res.status(500).json({error:'Internal Server Error'});
+        }
+        console.log(results);
+        res.json(results);
+    });
+});
+
 app.post('/login', (req, res) =>{
     const {email, passw} = req.body;
 

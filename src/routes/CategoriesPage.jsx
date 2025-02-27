@@ -66,7 +66,7 @@ export default function CategoriesPage(){
                                 <TableCell align="center" sx={{maxWidth:'200px', minWidth:'200px'}}>{showStatus(isActive(category.status))}</TableCell>
                                 <TableCell align="center">
                                     <EditCateg categ={category}/>
-                                    <RemoveCateg id_categ={category.id_categoria}/>
+                                    <RemoveCateg categ={category}/>
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -13,18 +13,38 @@ const EditCateg = ({ categ }) => {
   const handleOpen = () => {
     setOpen(true);
     setSelectedCateg(categ);
-    console.log(categ);
-    console.log(selectedCateg);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setSelectedCateg({
+      id_categoria: '',
+      categoria: '',
+      status: ''
+    })
   };
 
+  const handleChange = (event) =>{
+    setSelectedCateg({...selectedCateg, categoria: event.target.value});
+  }
 
   const handleSelectChange = (event) => {
     setSelectedCateg({ ...selectedCateg, status: event.target.value });
   };
+
+  const handleEditSubmit = (categ) =>{
+    console.log(categ);
+    axios.post('http://localhost:3000/edit-categ', categ)
+      .then(response =>{
+        console.log(response);
+        window.location.reload();
+      })
+      .catch(error =>{
+        console.error('There was an error: ', error);
+      })
+      handleClose();
+  }
+
 
   return (
     <>
@@ -33,8 +53,7 @@ const EditCateg = ({ categ }) => {
         <DialogTitle variant="h5" fontWeight="500">Editar categoria</DialogTitle>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: '10px' }}>
           <Typography variant="body1" fontWeight="500">Nome da categoria</Typography>
-          <TextField sx={{ minWidth: '400px' }} value={selectedCateg.categoria}></TextField>
-
+          <TextField onChange={handleChange} sx={{ minWidth: '400px' }} value={selectedCateg.categoria}></TextField>
           <div style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
             <Typography variant="body1" fontWeight="500">Status</Typography>
             <FormControl>
@@ -46,7 +65,7 @@ const EditCateg = ({ categ }) => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
             <Button onClick={handleClose}>Cancelar</Button>
-            <Button variant="contained">Editar</Button>
+            <Button onClick={() => handleEditSubmit(selectedCateg)} variant="contained">Editar</Button>
           </div>
         </DialogContent>
       </Dialog>
