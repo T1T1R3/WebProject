@@ -13,9 +13,9 @@ app.use(cors());
 
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'dbuser',
-    password: 'node123',
+    host: 'projetoweb.c5yo2k2mc7mk.us-east-2.rds.amazonaws.com',
+    user: 'admin',
+    password: 'node1234',
     database: 'ProjetoWeb'
 });
 
