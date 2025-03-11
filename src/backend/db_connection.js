@@ -136,7 +136,7 @@ app.post('/register', (req, res) =>{
         }
 
         const query = 'INSERT INTO usuarios (nome_usuario, email, senha, permissao, status) VALUES (?, ?, ?, ?, ?)';
-        connection.query(query, [nome, email, senha, permissao, status], (err, results) =>{
+        connection.query(query, [nome_usuario, email, senha, permissao, status], (err, results) =>{
             if(err){
                 return res.status(500).send('Cannot register user');
             }
