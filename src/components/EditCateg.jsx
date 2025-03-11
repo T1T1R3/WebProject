@@ -34,7 +34,7 @@ const EditCateg = ({ categ }) => {
 
   const handleEditSubmit = (categ) =>{
     console.log(categ);
-    axios.post('http://localhost:3000/edit-categ', categ)
+    axios.post('http://44.210.136.157:3000/edit-categ', categ)
       .then(response =>{
         console.log(response);
         window.location.reload();

@@ -34,7 +34,7 @@ export default function CategoriesPage(){
     const [categories, setCategories] = useState([]);
 
     useEffect(() =>{
-        axios.get('http://localhost:3000/show-categ')
+        axios.get('http://44.210.136.157:3000/show-categ')
         .then(response => {
             setCategories(response.data);
         })

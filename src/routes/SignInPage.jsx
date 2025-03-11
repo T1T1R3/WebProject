@@ -29,7 +29,7 @@ export default function SignIn() {
 
   const handleSignIn = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:3000/login', { email, passw });
+      const response = await axios.post('http://44.210.136.157:3000/login', { email, passw });
       const user = response.data;
       setAlert({type:'success', message:'Usuário logado com sucesso!'});
       login(user);
