@@ -4,6 +4,7 @@ import { SignInPage } from "@toolpad/core";
 import { Container, Alert, Checkbox, FormControlLabel, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../components/AuthContext';
+import RegisterButton from "../components/RegisterButton";
 
 const providers = [{ id: 'credentials', name: 'Email and Password' }];
 
@@ -95,6 +96,7 @@ export default function SignIn() {
             subtitle:alertBox,
             rememberMe:RememberMe,
             submitButton:CustomButton,
+            signUpLink:RegisterButton,
         }}
       />
     </Container>

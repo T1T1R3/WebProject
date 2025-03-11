@@ -119,6 +119,32 @@ app.post('/login', (req, res) =>{
     })
 })
 
+app.post('/register', (req, res) =>{
+    const {nome_usuario, email, senha, permissao, status} = req.body;
+
+    if(!nome_usuario || !email || !senha){
+        return res.status(403).send('error no email or pass');
+    }
+
+    const query = 'SELECT * FROM usuarios WHERE email = ?';
+    connection.query(query, [email], async (err, results) =>{
+        if(err){
+            return res.status(500).send('Cannot check user');
+        }
+        if(results.length > 0){
+            return res.status(430).send('Email already in use');
+        }
+
+        const query = 'INSERT INTO usuarios (nome_usuario, email, senha, permissao, status) VALUES (?, ?, ?, ?, ?)';
+        connection.query(query, [nome, email, senha, permissao, status], (err, results) =>{
+            if(err){
+                return res.status(500).send('Cannot register user');
+            }
+            res.status(200).send('User registered');
+        })
+    })
+})
+
 app.listen(port, '0.0.0.0',() => {
     console.log(`Server is running on http://54.161.150.185:${port}`);
 });
