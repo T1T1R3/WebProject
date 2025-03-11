@@ -13,7 +13,7 @@ const LoginBox = () => {
 
     const handleSubmit = async () =>{
         try{
-            const response = await axios.post('http://44.210.136.157:3000/login', {email, passw});
+            const response = await axios.post('http://54.161.150.185:3000/login', {email, passw});
             setAlert({type:'success', message:'Usuário logado com sucesso!'});
             setTimeout(() =>{
                 setLoading(true);
