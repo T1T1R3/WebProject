@@ -19,7 +19,7 @@ const CategReg = () =>{
     }
 
     const handleSubmit = (categ) => {
-        axios.post('http://54.161.150.185:3000/add-categ', categ)
+        axios.post('http://localhost:3000/add-categ', categ)
             .then(response => {
                 console.log(response);
                 window.location.reload();

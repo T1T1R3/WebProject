@@ -13,9 +13,9 @@ app.use(cors());
 
 
 const connection = mysql.createConnection({
-    host: 'projetoweb.c5yo2k2mc7mk.us-east-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'node1234',
+    host: 'localhost',
+    user: 'dbuser',
+    password: 'node123',
     database: 'ProjetoWeb'
 });
 
@@ -145,6 +145,6 @@ app.post('/register', (req, res) =>{
     })
 })
 
-app.listen(port, '0.0.0.0',() => {
-    console.log(`Server is running on http://54.161.150.185:${port}`);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });

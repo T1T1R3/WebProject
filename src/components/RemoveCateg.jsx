@@ -25,7 +25,7 @@ const RemoveCateg = ({categ}) => {
     }
 
     const handleDelete = (categ) =>{
-        axios.delete('http://54.161.150.185:3000/remove-categ', {
+        axios.delete('http://localhost:3000/remove-categ', {
             data:{id_categoria:categ.id_categoria}
         })
         .then(response =>{

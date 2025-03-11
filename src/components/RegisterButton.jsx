@@ -40,7 +40,7 @@ export default function RegisterButton(){
 
     const handleSubmit = () =>{
         console.log(user);
-        axios.post('http://54.161.150.185:3000/register', user)
+        axios.post('http://localhost:3000/register', user)
             .then(response => {
                 console.log(response);
                 setAlert({ type: "success", message: "Usuário cadastrado com sucesso!" });
