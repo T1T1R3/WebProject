@@ -9,6 +9,9 @@ import CategoriesPage from './routes/CategoriesPage.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './components/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
+import SuppliersPage from './routes/SuppliersPage.jsx';
+import ProductsPage from './routes/ProductsPage.jsx';
+import ReqPage from './routes/ReqPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,15 +36,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'register/suppliers',
-        element: <PrivateRoute element={<CategoriesPage />} />,
+        element: <PrivateRoute element={<SuppliersPage />} />,
       },
       {
         path: 'register/products',
-        element: <PrivateRoute element={<CategoriesPage />} />,
+        element: <PrivateRoute element={<ProductsPage />} />,
       },
       {
         path: 'register/requests',
-        element: <PrivateRoute element={<CategoriesPage />} />,
+        element: <PrivateRoute element={<ReqPage />} />,
       },
     ],
   },

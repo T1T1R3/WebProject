@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import NewCateg from "../components/NewCateg";
-import RemoveCateg from "../components/RemoveCateg";
-import EditCateg from "../components/EditCateg";
 import { Typography } from "@mui/material";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Collapse, Box, Checkbox, Button } from "@mui/material";
 import {Chip} from "@mui/material";
@@ -30,13 +27,13 @@ function showStatus(value){
 }
 
 
-export default function CategoriesPage(){
-    const [categories, setCategories] = useState([]);
+export default function SuppliersPage(){
+    const [Suppliers, setSuppliers] = useState([]);
 
     useEffect(() =>{
-        axios.get('http://localhost:3000/show-categ')
+        axios.get('http://localhost:3000/show-suppliers')
         .then(response => {
-            setCategories(response.data);
+            setSuppliers(response.data);
         })
         .catch(error => {
             console.error(error);
@@ -46,28 +43,29 @@ export default function CategoriesPage(){
     return(
         <>
             <div style={{display:'flex', justifyContent:'space-between', marginBottom:'10px'}}>
-                <Typography variant="h6">Categorias</Typography>
-                <NewCateg />
+                <Typography variant="h6">Fornecedores</Typography>
+
             </div>
 
             <TableContainer>
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Nome da Categoria</TableCell>
+                            <TableCell>Nome do Fornecedor</TableCell>
                             <TableCell align="center" sx={{maxWidth:'200px', minWidth:'200px'}}>Status</TableCell>
-                            <TableCell align="center" >Operações</TableCell>
+                            <TableCell align="center" >Email</TableCell>
+                            <TableCell align="center" >CNPJ</TableCell>
+                            <TableCell align="center" >Telefone</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {categories.map((category) => (
-                            <TableRow key={category.id_categoria}>
-                                <TableCell>{category.categoria}</TableCell>
-                                <TableCell align="center" sx={{maxWidth:'200px', minWidth:'200px'}}>{showStatus(isActive(category.status))}</TableCell>
-                                <TableCell align="center">
-                                    <EditCateg categ={category}/>
-                                    <RemoveCateg categ={category}/>
-                                </TableCell>
+                        {Suppliers.map((supplier) => (
+                            <TableRow key={supplier.id_fornecedor}>
+                                <TableCell >{supplier.nome_fornecedor}</TableCell>
+                                <TableCell align="center" sx={{maxWidth:'200px', minWidth:'200px'}}>{showStatus(isActive(supplier.status))}</TableCell>
+                                <TableCell align="center">{supplier.email_fornecedor}</TableCell>
+                                <TableCell>{supplier.cnpj}</TableCell>
+                                <TableCell>{supplier.telefone   }</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

@@ -1,6 +1,5 @@
 import express from "express";
 import mysql from "mysql";
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 
@@ -88,6 +87,28 @@ app.delete('/remove-categ', (req, res) =>{
         res.json(results);
     });
 });
+
+app.get('/show-suppliers', (req, res) =>{
+    connection.query("SELECT * FROM fornecedor", (err, results) => {
+        if(err) throw err;
+        res.json(results);
+    })
+})
+
+app.get('/show-products', (req, res) =>{
+    connection.query("SELECT * FROM produto", (err, results) => {
+        if(err) throw err;
+        res.json(results);
+    })
+})
+
+app.get('/show-requisitions', (req, res) =>{
+    connection.query("SELECT * FROM requisicao", (err, results) => {
+        if(err) throw err;
+        res.json(results);
+    })
+})
+
 
 app.post('/login', (req, res) =>{
     const {email, passw} = req.body;

@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, TextField, Container, Box, Button, Dialog, DialogTitle, DialogContent, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import axios from "axios";
 
-const CategReg = () =>{
+const NewCateg = () =>{
     const [open, setOpen] = React.useState(false);
     const [categ, setCateg] = React.useState({
         nomeCateg: '',
@@ -66,4 +66,4 @@ const CategReg = () =>{
     )
 }
 
-export default CategReg;
+export default NewCateg;
